@@ -12,69 +12,73 @@
 
 <body>
     <div id="all">
-        <div id="showcase">
-            <div>
-                <h2>
-                    * * * KAI BAI BO * * *
-                    <br> Championship
-                </h2>
-                <p>Are you ready to throwdown!?</p>
 
+        <div id="game-section">
+            <div id="showcase">
+                <div>
+                    <h2>
+                        * * * KAI BAI BO * * *
+                        <br> Championship
+                    </h2>
+                    <p>Are you ready to throwdown!?</p>
+
+                </div>
+
+                <div class="start">
+                    <button type="button" onclick="init()">FIGHT</button>
+                </div>
             </div>
 
-            <div class="start">
-                <button type="button" onclick="init()">FIGHT</button>
-            </div>
-        </div>
+            <div id="scoreboard">
+                <h2 class="scoreboard-title">Score Board</h2>
+                <div class="player-score">
+                    <h3>Player
+                        <br>
+                        <p class="score-back">0</p>
+                    </h3>
+                </div>
 
-        <div id="scoreboard">
-            <h2 class="scoreboard-title">Score Board</h2>
-            <div class="player-score">
-                <h3>Player
-                    <br>
-                    <p class="score-back">0</p>
-                </h3>
-            </div>
-
-            <div class="cpu-score">
-                <h3>CPU
-                    <br>
-                    <p class="score-back">0</p>
-                </h3>
-            </div>
-        </div>
-
-        <div id="game-area">
-            <div class="player-area">
-                <p class="bold">Player</p>
-
-                <img src="/images/rock64.png" id="player-choice">
-
+                <div class="cpu-score">
+                    <h3>CPU
+                        <br>
+                        <p class="score-back">0</p>
+                    </h3>
+                </div>
             </div>
 
-            <div class="cpu-area">
-                <p class="bold">CPU</p>
+            <div id="game-area">
+                <div class="player-area">
+                    <p class="bold">Player</p>
 
-                <img src="/images/scissor64.png" id="cpu-choice" class="flip">
+                    <img src="/images/rock64.png" id="player-choice">
 
+                </div>
+
+                <div class="cpu-area">
+                    <p class="bold">CPU</p>
+
+                    <img src="/images/scissor64.png" id="cpu-choice" class="flip">
+
+                </div>
             </div>
-        </div>
 
-        <div id="user-interact">
-            <h4 class="messages">
-                Message
-            </h4>
-        </div>
+            <div id="user-interact">
 
-        <div id="choice">
-            <!-- Rock -->
-            <img src="images/rock64.png" id="rock" title="Rock">
+                <h4 class="messages">
+                    Message
+                </h4>
 
-            <!-- Paper -->
-            <img src="images/paper64.png" id="paper" title="Paper">
+                <div id="choice">
+                    <!-- Rock -->
+                    <img src="images/rock64.png" id="rock" title="Rock">
 
-            <!-- Scissor -->
-            <img src="images/scissor64.png" id="scissor" title="Scissor">
+                    <!-- Paper -->
+                    <img src="images/paper64.png" id="paper" title="Paper">
+
+                    <!-- Scissor -->
+                    <img src="images/scissor64.png" id="scissor" title="Scissor">
+                </div>
+            </div>
         </div>
 
     </div>

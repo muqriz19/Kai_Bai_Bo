@@ -140,10 +140,30 @@
 
 /* end game area */
 
+/* user interaction */
+
+#user-interact {
+    background-color: rgb(255, 243, 224);
+    border-bottom: 5px solid rgb(66, 66, 66);
+    border-right: 5px solid rgb(66, 66, 66);
+    border-left: 5px solid rgb(66, 66, 66);
+    overflow: auto;
+}
+
 #choice > img {
     border: 2px solid #212121;
     border-radius: 4px;
     background-color: #fafafa;
+    box-shadow: 0px 2px 4px rgb(38,50,56);
+    margin-bottom: 10px;
 }
 
+#choice img:hover {
+    cursor: pointer;
+    transform: translateY(4px);
+
+}
+
+
+/* end user interaction */
 
