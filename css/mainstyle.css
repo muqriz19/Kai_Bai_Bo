@@ -8,6 +8,10 @@
     font-weight: bold;
 }
 
+.flip {
+    transform: scaleX(-1);
+}
+
 /* End Common */
 
 #all {
@@ -113,7 +117,11 @@
 
 /* end scoreboard */
 
+
+/* Game area */
 #game-area {
+    border: 5px solid rgb(38,50,56);
+    overflow: hidden;
 }
 
 #game-area > .player-area {
@@ -129,6 +137,8 @@
     width: 50%;
     height: 300px;
 }
+
+/* end game area */
 
 #choice > img {
     border: 2px solid #212121;
