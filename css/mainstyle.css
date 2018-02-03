@@ -36,10 +36,14 @@
 }
 
 #scoreboard .scoreboard-title {
-    margin: 0px;
+    margin-top: 0px;
+    margin-left: 250px;
+    margin-right: 250px;
     border-bottom: 5px solid rgb(250, 250, 250);
     border-right: 5px solid rgb(250, 250, 250);
     border-left: 5px solid rgb(250, 250, 250);
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 #scoreboard .player-score {
@@ -67,19 +71,6 @@
 
 /* end score black/blue background */
 
-.score-back > p {
-    text-align: right;
-}
-
-
-#scoreboard .cpu-s {
-    
-    background-color: rgb(38,50,56);
-    width: 100px;
-    height: 50px;
-    color: red;
-    
-}
 
 #game-area {
 }
@@ -95,7 +86,6 @@
     float: right;
     width: 50%;
 }
-
 
 #choice > img {
     border: 2px solid #212121;
