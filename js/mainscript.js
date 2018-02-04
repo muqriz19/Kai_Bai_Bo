@@ -1,5 +1,7 @@
 // Variables
 
+"use strict";
+
 var playerScoreEle = document.getElementById('player-s');
 var cpuScoreEle = document.getElementById('cpu-s');
 var pScore = 0;
@@ -16,33 +18,35 @@ var playerChoiceImg = document.getElementById('player-choice');
 var cpuChoiceImg = document.getElementById('cpu-choice');
 
 
-// 1 is rock, 2 is paper, 3 is scissor, 0 is nothing
-var playerChoice = 0;
-var cpuChoice = 0;
+// 0 - rock
+// 1 - paper
+// 3 - scissor
+var playerChoice;
+var cpuChoice;
 
 var weapon = [
 
     {
-        id: 1,
+        id: 0,
         name: 'Rock',
         image: '/images/rock64.png'
     },
-    
+
     {
-        id: 2,
+        id: 1,
         name: 'Paper',
         image: '/images/paper64.png'
     },
-    
+
     {
-        id: 3,
+        id: 2,
         name: 'Scissor',
         image: '/images/scissor64.png'
     }
 
-];
+]
 
-var rock = {
+/* var rock = {
     id: 1,
     name: 'Rock',
     image: '/images/rock64.png'
@@ -59,11 +63,33 @@ var scissor = {
     name: 'Scissor',
     image: '/images/scissor64.png'
 }
+ */
 
 
+/* function generatecpuChoice() {
+    //Generate Using string choices
+    cpuChoice = Math.floor(Math.random() * 3 + 1);
+    var computerChoice;
+    //console.log(weapon[cpuChoice-1].name);
+
+    if (cpuChoice === 1) {
+        computerChoice = 'Rock';
+
+    } else if (cpuChoice === 3) {
+        computerChoice === 'Paper';
+
+    } else if (cpuChoice === 2) {
+        computerChoice = 'Scissor';
+    }
+
+    return computerChoice;
+} */
 
 function generatecpuChoice() {
+    //Generate Using integer choices
     cpuChoice = Math.floor(Math.random() * 3 + 1);
+
+    return cpuChoice;
 }
 
 function startgame() {
@@ -73,31 +99,6 @@ function startgame() {
     cpuScoreEle.innerText = cpuScore;
 
 }
-
-
-rockEle.addEventListener('click', function () {
-    playerChoice = rock.id;
-    generatecpuChoice();
-
-    checkIfBeat(playerChoice, cpuChoice);
-
-});
-
-paperEle.addEventListener('click', function () {
-    playerChoice = paper.id;
-    generatecpuChoice();
-
-    checkIfBeat(playerChoice, cpuChoice);
-
-});
-
-scissorEle.addEventListener('click', function () {
-    playerChoice = scissor.id;
-    generatecpuChoice();
-
-    checkIfBeat(playerChoice, cpuChoice);
-
-});
 
 function updateScore(whoWon) {
 
@@ -117,83 +118,185 @@ function updateScore(whoWon) {
     }
 }
 
+function checkIfBeat(playC, cpuC) {
 
+    if (weapon[playC].name === 'Rock' && weapon[cpuC - 1].name === 'Paper') {
+        // Player rock dies CPU paper
+        message.innerText = 'Player ' + weapon[playC].name + ' wrapped by ' + ' CPU ' + weapon[cpuC - 1].name + '!';
+        gameStatus.innerText = 'You Lost!';
+        playerChoiceImg.src = weapon[playC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
 
-function checkIfBeat(playerC, cpuC) {
-
-    // START ROCK ONLY
-    if (playerC === rock.id && cpuC === scissor.id) {
-        // Player rock beats CPU scissor
-        playerChoiceImg.src = rock.image;
-        cpuChoiceImg.src = scissor.image;
-        message.innerText = 'Player ' + rock.name + ' beats ' + 'CPU ' + scissor.name + '!';
-        console.log(playerC + ' ' + cpuC);
-        gameStatus.innerText = 'You Win';
-        updateScore('player');
-
-    } else if (playerC === rock.id && cpuC === paper.id) {
-        // Player rock wrapped by CPU paper
-        playerChoiceImg.src = rock.image;
-        cpuChoiceImg.src = paper.image;
-        message.innerText = 'Player ' + rock.name + ' wrapped by ' + 'CPU ' + paper.name + '!';
-        console.log(playerC + ' ' + cpuC);
-        gameStatus.innerText = 'You Lost';
-        updateScore('cpu');
-    
-    //END ROCK ONLY
-
-
-    // START PAPER ONLY
-    } else if (playerC === paper.id && cpuC === rock.id) {
-        // Player paper wraps CPU rock
-        playerChoiceImg.src = paper.image;
-        cpuChoiceImg.src = rock.image;
-        message.innerText = 'Player ' + paper.name + ' wraps ' + 'CPU ' + rock.name + '!';
-        console.log(playerC + ' ' + cpuC);
-        gameStatus.innerText = 'You Win';
-        updateScore('player');
-
-    } else if (playerC === paper.id && cpuC === scissor.id) {
-        // Player paper sliced by CPU scissor
-        playerChoiceImg.src = paper.image;
-        cpuChoiceImg.src = scissor.image;
-        message.innerText = 'Player ' + paper.name + ' sliced by ' + 'CPU ' + scissor.name + '!';
-        console.log(playerC + ' ' + cpuC);
-        gameStatus.innerText = 'You Lost';
+        // Provide who won..
         updateScore('cpu');
 
-    // END PAPER ONLY
+    } else if (weapon[playC].name === 'Rock' && weapon[cpuC - 1].name === 'Scissor') {
+        // Player rock smash CPU Scissor
+        message.innerText = 'Player ' + weapon[playC].name + ' smashed by ' + ' CPU ' + weapon[cpuC - 1].name + '!';
+        gameStatus.innerText = 'You Win!';
+        playerChoiceImg.src = weapon[playC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
 
-    // START SCISSOR ONLY
-    } else if (playerC === scissor.id && cpuC === paper.id) {
-        // Player scissor shreds by CPU paper
-        playerChoiceImg.src = scissor.image;
-        cpuChoiceImg.src = paper.image;
-        message.innerText = 'Player ' + scissor.name + ' shreds ' + 'CPU ' + paper.name + '!';
-        console.log(playerC + ' ' + cpuC);
-        gameStatus.innerText = 'You Win';
+        // Provide who won..
         updateScore('player');
 
+    } else if (weapon[playC].name === 'Paper' && weapon[cpuC - 1].name === 'Rock') {
+        // Player paper beats CPU rock
+        message.innerText = 'Player ' + weapon[playC].name + ' beats ' + ' CPU ' + weapon[cpuC - 1].name + '!';
+        gameStatus.innerText = 'You Win!';
+        playerChoiceImg.src = weapon[playC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
 
-    } else if (playerC === scissor.id && cpuC === rock.id) {
-        // Player scissor crushed by CPU rock
-        playerChoiceImg.src = scissor.image;
-        cpuChoiceImg.src = rock.image;
-        message.innerText = 'Player ' + scissor.name + ' crushed by' + 'CPU ' + rock.name + '!';
-        console.log(playerC + ' ' + cpuC);
-        gameStatus.innerText = 'You Lost';
+        // Provide who won..
+        updateScore('player');
+
+    } else if (weapon[playC].name === 'Paper' && weapon[cpuC - 1].name === 'Scissor') {
+        // Player paper shredded by CPU scissor
+        message.innerText = 'Player ' + weapon[playC].name + ' shredded by ' + ' CPU ' + weapon[cpuC - 1].name + '!';
+        gameStatus.innerText = 'You Lost!';
+        playerChoiceImg.src = weapon[playC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+
+        // Provide who won..
         updateScore('cpu');
         
-    // END SCISSOR ONLY
-    } else if (playerC === cpuC) {
-    // START DRAW ONLY
-        //playerChoiceImg.src = playerC === cpuC ? 'images/' : 'Please';
-        cpuChoiceImg.src = rock.image;
+    } else if (weapon[playC].name === 'Scissor' && weapon[cpuC - 1].name === 'Rock') {
+        // Player scissor crushed by CPU rock
+        message.innerText = 'Player ' + weapon[playC].name + ' crushed by ' + ' CPU ' + weapon[cpuC - 1].name + '!';
+        gameStatus.innerText = 'You Lost!';
+        playerChoiceImg.src = weapon[playC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+
+        // Provide who won..
+        updateScore('cpu');
+
+    } else if (weapon[playC].name === 'Scissor' && weapon[cpuC - 1].name === 'Paper') {
+        // Player scissor snips by CPU paper
+        message.innerText = 'Player ' + weapon[playC].name + ' snips ' + ' CPU ' + weapon[cpuC - 1].name + '!';
+        gameStatus.innerText = 'You Lost!';
+        playerChoiceImg.src = weapon[playC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+
+        // Provide who won..
+        updateScore('player');
+
+    } else {
+        // Both Draw
+        message.innerText = 'Player ' + weapon[playC].name + ' draws with ' + ' CPU ' + weapon[cpuC - 1].name + '!';
+        gameStatus.innerText = 'Draw!';
+        playerChoiceImg.src = weapon[playC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+    }
+}
+
+
+
+/* function checkIfBeat(playerC, cpuC) {
+
+    // START ROCK ONLY
+    if (weapon[playerC].name === 'Rock' && weapon[cpuC - 1 - 1].name === 'Scissor') {
+        // Player rock beats CPU scissor
+        playerChoiceImg.src = weapon[playerC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+        message.innerText = 'Player ' + weapon[playerC].name + ' beats ' + 'CPU ' + weapon[cpuC - 1].name + '!';
+        console.log(playerC + ' ' + cpuC - 1);
+        gameStatus.innerText = 'You Win';
+        updateScore('player');
+
+    } else if (playerC === weapon[playerC].id && cpuC - 1 === weapon[cpuC - 1-1].id) {
+        // Player rock wrapped by CPU paper
+        playerChoiceImg.src = weapon[playerC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+        message.innerText = 'Player ' + weapon[playerC].name + ' wrapped by ' + 'CPU ' + weapon[playerC].name + '!';
+        console.log(playerC + ' ' + cpuC - 1);
+        gameStatus.innerText = 'You Lost';
+        updateScore('cpu');
+
+        //END ROCK ONLY
+
+
+        // START PAPER ONLY
+    } else if (playerC === weapon[playerC].id && cpuC - 1 === weapon[cpuC - 1].id) {
+        // Player paper wraps CPU rock
+        playerChoiceImg.src = weapon[playerC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+        message.innerText = 'Player ' + weapon[playerC].name + ' wraps ' + 'CPU ' + weapon[cpuC - 1].name + '!';
+        console.log(playerC + ' ' + cpuC - 1);
+        gameStatus.innerText = 'You Win';
+        updateScore('player');
+
+    } else if (playerC === weapon[playerC].id && cpuC - 1 === weapon[cpuC - 1].id) {
+        // Player paper sliced by CPU scissor
+        playerChoiceImg.src = weapon[playerC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+        message.innerText = 'Player ' + weapon[playerC].name + ' sliced by ' + 'CPU ' + weapon[cpuC - 1].name + '!';
+        console.log(playerC + ' ' + cpuC - 1);
+        gameStatus.innerText = 'You Lost';
+        updateScore('cpu');
+
+        // END PAPER ONLY
+
+        // START SCISSOR ONLY
+    } else if (playerC === weapon[playerC].id && cpuC - 1 === weapon[cpuC - 1].id) {
+        // Player scissor shreds by CPU paper
+        playerChoiceImg.src = weapon[playerC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+        message.innerText = 'Player ' + weapon[playerC].name + ' shreds ' + 'CPU ' + weapon[cpuC - 1].name + '!';
+        console.log(playerC + ' ' + cpuC - 1);
+        gameStatus.innerText = 'You Win';
+        updateScore('player');
+
+
+    } else if (playerC === weapon[playerC].id && cpuC - 1 === weapon[cpuC - 1].id) {
+        // Player scissor crushed by CPU rock
+        playerChoiceImg.src = weapon[playerC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
+        message.innerText = 'Player ' + weapon[playerC].name + ' crushed by' + 'CPU ' + weapon[cpuC - 1].name + '!';
+        console.log(playerC + ' ' + cpuC - 1);
+        gameStatus.innerText = 'You Lost';
+        updateScore('cpu');
+
+        // END SCISSOR ONLY
+    } else if (playerC === cpuC - 1) {
+        // START DRAW ONLY
+        playerChoiceImg.src = weapon[playerC].image;
+        cpuChoiceImg.src = weapon[cpuC - 1].image;
 
         message.innerText = "Player ";
         gameStatus.innerText = 'Draw'
-        console.log(playerC + ' ' + cpuC);
+        console.log(playerC + ' ' + cpuC - 1);
     }
     // END DRAW ONLY
-}
+} */
+
+
+rockEle.addEventListener('click', function () {
+    playerChoice = weapon[0].id;
+    //console.log(playerChoice);
+    cpuChoice = generatecpuChoice();
+    checkIfBeat(playerChoice, cpuChoice);
+
+});
+
+paperEle.addEventListener('click', function () {
+    playerChoice = weapon[1].id;
+    //console.log(playerChoice);
+    cpuChoice = generatecpuChoice();
+    checkIfBeat(playerChoice, cpuChoice);
+
+});
+
+scissorEle.addEventListener('click', function () {
+    playerChoice = weapon[2].id;
+    //console.log(playerChoice);
+    cpuChoice = generatecpuChoice();
+    checkIfBeat(playerChoice, cpuChoice);
+
+});
+
+
+
+
+
+
 
