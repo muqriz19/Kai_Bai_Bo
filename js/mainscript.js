@@ -92,11 +92,12 @@ function generatecpuChoice() {
     return cpuChoice;
 }
 
-function startgame() {
+function init() {
     message.innerText = 'Choose Your Weapon!';
     gameStatus.innerHTML = 'Game Start'
-    playerScoreEle.innerText = pScore;
-    cpuScoreEle.innerText = cpuScore;
+    playerScoreEle.innerText = 0;
+    cpuScoreEle.innerText = 0;
+
 
 }
 
