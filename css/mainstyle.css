@@ -1,0 +1,169 @@
+@font-face {
+    font-family: blackchancery;
+    src: url('/../../fonts/blackchancery/BLKCHCRY.TTF');
+}
+
+/* Common */
+.bold {
+    font-weight: bold;
+}
+
+.flip {
+    transform: scaleX(-1);
+}
+
+/* End Common */
+
+#all {
+
+    background: lightblue;
+    padding: 15px;
+    margin: 5px;
+    box-shadow: 4px 5px 2px rgb(238,238,238);
+    border: 1px solid rgb(168, 168,168);
+    text-align: center;
+}
+
+/* the top title of application */
+#showcase {
+    font-family: blackchancery;
+    background-color: rgb(189, 189, 189);
+    border: 5px solid rgb(38,50,56);
+    background-image: url(/images/south_korea_flag.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 425px;
+    text-shadow: 0px 2px 1px rgb(245,245,245);
+
+}
+
+#showcase p {
+    position: relative;
+    font-weight: bolder;
+    font-size: 20px;
+    top: 220px;
+    text-shadow: 0px 2px 1px rgb(245,245,245);
+}
+
+#showcase > .start > button{
+    border: none;
+    background-color: rgb(238, 238, 238);
+    position: relative;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 2px;
+    font-size: 20px;
+    top: 210px;
+    box-shadow: 0px 2px 1px rgb(38,50,56);
+}
+
+#showcase button:hover {
+    color: red;
+    cursor: pointer;
+    transform: translateY(2px);
+}
+
+
+
+/* end of the top title of application */
+
+
+/* scoreboard */
+#scoreboard {
+    padding-bottom: 10px;
+    color: #ffffff;
+    background-color: rgb(48, 63, 159);
+    border: 5px solid rgb(250, 250, 250);
+    overflow: hidden;
+
+}
+
+#scoreboard > .scoreboard-title {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding-top: 10px;
+    padding-bottom: 4px; 
+    border-bottom: 5px solid rgb(250, 250, 250);
+    border-right: 5px solid rgb(250, 250, 250);
+    border-left: 5px solid rgb(250, 250, 250);
+}
+
+#scoreboard .player-score {
+    float: left;
+    position: relative;
+    left: 15%;
+}
+
+
+#scoreboard .cpu-score {
+    float: right;
+    position: relative;
+    right: 15%;
+}
+
+/* the score black/blue background */
+.score-back {
+    background-color: rgb(38,50,56);
+    width: 100px;
+    height: 50px;
+    color: red;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+/* end score black/blue background */
+
+/* end scoreboard */
+
+
+/* Game area */
+#game-area {
+    border: 5px solid rgb(38,50,56);
+    overflow: hidden;
+}
+
+#game-area > .player-area {
+    background-color: pink;
+    float: left;
+    width: 50%;
+    height: 300px;
+}
+
+#game-area > .cpu-area {
+    background-color: yellow;
+    float: right;
+    width: 50%;
+    height: 300px;
+}
+
+/* end game area */
+
+/* user interaction */
+
+#user-interact {
+    background-color: rgb(255, 243, 224);
+    border-bottom: 5px solid rgb(66, 66, 66);
+    border-right: 5px solid rgb(66, 66, 66);
+    border-left: 5px solid rgb(66, 66, 66);
+    overflow: auto;
+}
+
+#choice > img {
+    border: 2px solid #212121;
+    border-radius: 4px;
+    background-color: #fafafa;
+    box-shadow: 0px 2px 4px rgb(38,50,56);
+    margin-bottom: 10px;
+}
+
+#choice img:hover {
+    cursor: pointer;
+    transform: translateY(4px);
+
+}
+
+
+/* end user interaction */
+
