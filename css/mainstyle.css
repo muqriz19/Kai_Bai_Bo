@@ -29,7 +29,7 @@
     font-family: blackchancery;
     background-color: rgb(189, 189, 189);
     border: 5px solid rgb(38,50,56);
-    background-image: url(/images/south_korea_flag.png);
+    background-image: url('../images/south_korea_flag.png');
     background-repeat: no-repeat;
     background-position: center;
     height: 425px;
